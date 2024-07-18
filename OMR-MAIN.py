@@ -3,13 +3,13 @@ import numpy as np
 import sys
 import os
 
-# Modül dizin yolunu ekleyin
-sys.path.append(os.path.abspath("/home/neslihan/Masaüstü/ters-cevirmeli"))
+# Add module directory path
+sys.path.append(os.path.abspath("your-module-directory-path(utlis.py)"))
 
 import utlis
 
-# Görüntü dosyasının yolunu kontrol edin
-image_path = '/home/neslihan/Masaüstü/ters-cevirmeli/tersdogal.jpg'
+# your image path
+image_path = 'your-image-path'
 
 if not os.path.exists(image_path):
     print(f"Dosya bulunamadı: {image_path}")
@@ -81,44 +81,44 @@ else:
                     countR += 1
                     countC = 0
 
-            print("Pixel Değerleri:\n", myPixelVal)
+            print("Pixel Values:\n", myPixelVal)
 
-            # Index değerlerini bul
+            # Find index values
             myIndex = []
 
             for x in range(questions):
                 arr = myPixelVal[x]
 
-                # Eğer tüm şıklar belirli bir eşik değerden küçükse boş soru olarak işaretle
+                # Mark as a blank question if all options are less than a certain threshold value
                 if np.all(arr < 2000):
                     myIndex.append(-1)
                 else:
-                    # Eşik değerden büyük olan şıkları say
+                    # Count the choices greater than the threshold value
                     high_pixels = np.where(arr >= 3000)[0]
 
                     if len(high_pixels) > 1:
-                        myIndex.append(-2)  # Birden fazla şık belirli bir eşik değerden büyükse geçersiz soru
+                        myIndex.append(-2)  # Invalid question if more than one choice is greater than a certain threshold
                     else:
-                        # Tek bir şık belirli bir eşik değerden büyükse
+                        # If a single chic is greater than a certain threshold
                         max_index = np.argmax(arr)
                         if arr[max_index] >= 4000:
-                            myIndex.append(max_index)  # Belirli bir yüksek değerden büyükse doğru şıkkın indeksini ekle
+                            myIndex.append(max_index)  # Add the index of the correct option if it is greater than a certain high value
                         else:
-                            myIndex.append(-2)  # Eşik değerden düşükse geçersiz soru olarak işaretle
+                            myIndex.append(-2)  #Mark as invalid question if less than threshold
 
-            print("İndex Değerleri:\n", myIndex)
+            print("İndex Values:\n", myIndex)
 
-            # Notlandırma
+            # Grading
             grading = [1 if ans[x] == myIndex[x] else 0 for x in range(questions)]
             score = (sum(grading) / questions) * 100
             print("Grading:\n", grading)
             print(f"Score: {score}")
 
-            # Cevapları göster
+            # Show Answers
             imgResult = imgWarpColored.copy()
             imgResult = utlis.showAnswers(imgResult, myIndex, grading, ans, questions, choices)
 
-            # Görüntüleri birleştir
+            # Merge images
             imgBlank = np.zeros_like(img)
             imageArray = ([img, imgGray, imgBlur, imgCanny],
                           [imgContours, imgBiggestContours, imgWarpColored, imgResult])
