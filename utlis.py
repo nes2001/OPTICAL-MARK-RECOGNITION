@@ -90,39 +90,41 @@ def splitBoxes(img):
 
     
 
-def drawGrid(img,questions=5,choices=5):
-    secW = int(img.shape[1]/questions)
-    secH = int(img.shape[0]/choices)
-    for i in range (0,9):
-        pt1 = (0,secH*i)
-        pt2 = (img.shape[1],secH*i)
-        pt3 = (secW * i, 0)
-        pt4 = (secW*i,img.shape[0])
-        cv2.line(img, pt1, pt2, (255, 255, 0),2)
-        cv2.line(img, pt3, pt4, (255, 255, 0),2)
-
-    return img
 
 
 def showAnswers(img, myIndex, grading, ans, questions, choices):
-    secW = int(img.shape[1] / choices)  # Her seçeneğin genişliği
-    secH = int(img.shape[0] / questions)  # Her sorunun yüksekliği
+    secW = int(img.shape[1] / choices)  # the width of every options
+    secH = int(img.shape[0] / questions)  # the height of every options
 
-    circle_radius = 30  # Çemberin yarıçapı
+    circle_radius = 30  # radius of circle
 
     for x in range(questions):
         myAns = myIndex[x]
-        cX = (myAns * secW) + secW // 2  # Çemberin merkezi X koordinatı
-        cY = (x * secH) + secH // 2  # Çemberin merkezi Y koordinatı
+        cX = (myAns * secW) + secW // 2  # Center of the circle X coordinate
+        cY = (x * secH) + secH // 2  # Center of the circle Y coordinate
 
         if grading[x] == 1:
-            myColor = (0, 255, 0)  # Doğru cevap yeşil renkte
+            myColor = (0, 255, 0)  # The correct answer is in green
+            
         else:
-            myColor = (0, 0, 255)  # Yanlış cevap kırmızı renkte
+            myColor = (0, 0, 255)  # The wrong answer is in red
+
+        
 
         cv2.circle(img, (cX, cY), circle_radius, myColor, cv2.FILLED)
 
+        # display of the answer key in green
+        myColor = (0, 255, 0)
+        correctAns = ans[x]
+        cv2.circle(img,((correctAns * secW)+secW//2, (x * secH)+secH//2),
+        10,myColor,cv2.FILLED)
+
     return img
+
+
+
+
+
 
          
        
