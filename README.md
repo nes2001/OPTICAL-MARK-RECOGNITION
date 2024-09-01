@@ -7,34 +7,34 @@
 ![the output of the code](kod-output.png)
 
 
-# Otomatik Sınav Soru Çözücüsü
+# Automatic Exam Question Solver
 
-Bu proje, bir sınav kağıdının görüntüsünden doğru cevapları tespit etmek ve sınavın notunu hesaplamak için kullanılır. Proje, OpenCV ve Python dilinde geliştirilmiştir.
+This project is used to detect correct answers from an exam paper image and calculate the exam grade. The project is developed in OpenCV and Python.
 
-## Gereksinimler
+## Requirements
 
 - Python 3.x
 - OpenCV
 - NumPy
 
-## Kurulum
+## Installation
 
-1. Projeyi bilgisayarınıza klonlayın veya ZIP olarak indirin.
-2. Gerekli Python kütüphanelerini yüklemek için terminal veya komut istemcisinde şu komutu çalıştırın:
+1. Clone the project to your computer or download it as a ZIP.
+2. Run the following command in terminal or command prompt to install the required Python libraries:
 3. pip install opencv-python numpy
-4. Proje dosyalarınızı ve örnek sınav görüntüsünüzü belirttiğiniz yere kopyalayın.
+4. Copy your project files and sample exam image to the location you specified.
    
 
-## Kullanım
+## Usage
 
-1. `OMR-MAIN.py` dosyasını çalıştırın.
-2. Program, belirtilen sınav görüntüsünü işleyecek ve sonuçları ekranda gösterecektir.
-3. Ekranda, sınav görüntüsünün işlenmiş adımları ve sonuçlarını gösteren bir pencere açılacaktır.
+1. Run the `OMR-MAIN.py` file.
+2. The program will process the specified exam image and display the results on the screen.
+3. A window will open on the screen showing the processed steps and results of the exam image.
 
-## Ek Bilgiler
+## Additional Information
 
-- `utlis.py` dosyası, işlemleri gerçekleştiren yardımcı işlevleri içerir.
-- Proje, sadece belirli bir sınav formatı için tasarlanmıştır ve genel amaçlı sınav kağıdı çözücüsü olarak kullanılamaz.
+- The `utlis.py` file contains helper functions that perform the operations.
+- The project is designed for a specific exam format only and cannot be used as a general purpose exam paper solver.
 
 
 
